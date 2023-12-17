@@ -36,7 +36,7 @@ RUN mkdir -p /home/remote_user/.ssh
 RUN touch /home/remote_user/.ssh/authorized_keys  
 
 # Asignamos los permisos correspondientes
-RUN chown remote_user:remote_user   -R /home/remote_user && \
+RUN chown remote_user:remote_user -R /home/remote_user && \
     chmod 400 /home/remote_user/.ssh/authorized_keys
 
 # Exponemos el puerto 22 para permitir el acceso remoto
