@@ -5,6 +5,8 @@ services:
     image: jenkins/jenkins:lts
     ports:
       - "9001:8080"
+      - "5000:5000"
+    restart: always
     volumes:
       - $PWD/jenkins_home:/var/jenkins_home
     networks:
@@ -14,6 +16,8 @@ services:
      image: paulo866/debian-slave-jenkins:1.0.2
      # build:
        # context: slave-linux-dockerfile
+     expose:
+      - 22
      networks:
        - net
 networks:
