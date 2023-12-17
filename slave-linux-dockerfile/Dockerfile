@@ -23,6 +23,10 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y openssh-server
 
+# Instalamos Java LTS
+RUN apt-get update && \
+    apt-get install -y default-jdk
+
 # Creamos el usuario remoto y le asignamos una contraseña
 RUN useradd remote_user && \
     echo "remote_user:1234" | chpasswd && \
