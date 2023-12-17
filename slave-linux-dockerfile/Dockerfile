@@ -39,5 +39,10 @@ RUN touch /home/remote_user/.ssh/authorized_keys
 RUN chown remote_user:remote_user -R /home/remote_user && \
     chmod 400 /home/remote_user/.ssh/authorized_keys
 
+# Creamos el directorio de trabajo
+RUN mkdir /var/jenkins && \
+    chown remote_user:remote_user -R /var/jenkins && \
+    chmod -R 600 /var/jenkins
+
 # Exponemos el puerto 22 para permitir el acceso remoto
 CMD /usr/sbin/sshd -D

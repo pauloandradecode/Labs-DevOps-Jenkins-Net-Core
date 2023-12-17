@@ -11,7 +11,7 @@ services:
       - net
   remote_host:
      container_name: debian-slave
-     image: paulo866/debian-slave-jenkins:1.0.0
+     image: paulo866/debian-slave-jenkins:1.0.1
      # build:
        # context: slave-linux-dockerfile
      networks:
