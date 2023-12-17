@@ -46,7 +46,7 @@ RUN chown remote_user:remote_user -R /home/remote_user && \
 # Creamos el directorio de trabajo
 RUN mkdir /var/jenkins && \
     chown remote_user:remote_user -R /var/jenkins && \
-    chmod -R 600 /var/jenkins
+    chmod -R 777 /var/jenkins
 
 # Exponemos el puerto 22 para permitir el acceso remoto
 CMD /usr/sbin/sshd -D
