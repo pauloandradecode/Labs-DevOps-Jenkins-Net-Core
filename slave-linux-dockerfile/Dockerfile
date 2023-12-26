@@ -4,9 +4,11 @@ FROM debian:12.0-slim
 RUN apt-get update && \
     apt-get install -y wget
 
+# Instakamos Git
 RUN apt-get update && \
     apt-get install -y git
 
+# Instalamos dotnet
 RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
 RUN dpkg -i packages-microsoft-prod.deb
@@ -22,9 +24,14 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y dotnet-sdk-8.0
 
+# aspnetcore-runtime-8.0
 # Instalamos openssh-server para permitir el acceso remoto por el puerto 22
 RUN apt-get update && \
     apt-get install -y openssh-server
+
+# Instalamos Java LTS
+RUN apt-get update && \
+    apt-get install -y nuget
 
 # Instalamos Java LTS
 RUN apt-get update && \
