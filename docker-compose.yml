@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - $PWD/jenkins_home:/var/jenkins_home
+      - ./volumes/jenkins_home:/var/jenkins_home
     networks:
       - net
   remote_host:
@@ -26,10 +26,10 @@ services:
     environment:
       - sonar.jdbc.url=jdbc:postgresql://sonarqubedb:5432/sonar
     volumes:
-      - $PWD/sonarqube/conf:/opt/sonarqube/conf
-      - $PWD/sonarqube/data:/opt/sonarqube/data
-      - $PWD/sonarqube/extensions:/opt/sonarqube/extensions
-      - $PWD/sonarqube/lib/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+      - ./volumes/sonarqube/conf:/opt/sonarqube/conf
+      - ./volumes/sonarqube/data:/opt/sonarqube/data
+      - ./volumes/sonarqube/extensions:/opt/sonarqube/extensions
+      - ./volumes/sonarqube/lib/bundled-plugins:/opt/sonarqube/lib/bundled-plugins
     networks:
       - net
   db:
@@ -39,9 +39,24 @@ services:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
     volumes:
-      - $PWD/postgresql:/var/lib/postgresql
-      - $PWD/postgresql_data:/var/lib/postgresql/data
+      - ./volumes/postgresql:/var/lib/postgresql
+      - ./volumes/postgresql_data:/var/lib/postgresql/data
     networks:
       - net
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    volumes:
+      - ./volumes/rabbitmq/data/:/var/lib/rabbitmq
+      - ./volumes/rabbitmq/log/:/var/log/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - net
+
 networks:
   net:
